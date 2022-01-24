@@ -4,21 +4,22 @@ import java.time.LocalDateTime;
 
 public class Request {
     private int id;
-    private int cost;
+    private double cost;
     private String description;
     private String eventType;
     private String gradeFormat;
     private String eventLocation;
     private String eventDate;
-    private boolean complete;
-    private boolean approved;
-    private int reimbursement;
+    private Status status;
+    private double reimbursement;
+    private User author;
+    private User resolver;
 
 
     public Request() {
     }
 
-    public Request(int cost, String description, User requester, Manager approver, String eventType, String gradeFormat, String eventLocation, String eventDate, boolean complete, int reimbursement) {
+    public Request(int id, double cost, String description, String eventType, String gradeFormat, String eventLocation, String eventDate, Status status, double reimbursement, User author, User resolver) {
         this.id = id;
         this.cost = cost;
         this.description = description;
@@ -26,8 +27,10 @@ public class Request {
         this.gradeFormat = gradeFormat;
         this.eventLocation = eventLocation;
         this.eventDate = eventDate;
-        this.complete = complete;
+        this.status = status;
         this.reimbursement = reimbursement;
+        this.author = author;
+        this.resolver = resolver;
     }
 
 
@@ -35,11 +38,11 @@ public class Request {
         return id;
     }
 
-    public int getCost() {
+    public double getCost() {
         return cost;
     }
 
-    public void setCost(int cost) {
+    public void setCost(double cost) {
         this.cost = cost;
     }
 
@@ -83,27 +86,19 @@ public class Request {
         this.eventDate = eventDate;
     }
 
-    public boolean isComplete() {
-        return complete;
-    }
-
-    public void setComplete(boolean complete) {
-        this.complete = complete;
-    }
-
-    public boolean isApproved() {
-        return approved;
-    }
-
-    public void setApproved(boolean approved) {
-        this.approved = approved;
-    }
-
-    public int getReimbursement() {
+    public double getReimbursement() {
         return reimbursement;
     }
 
-    public void setReimbursement(int reimbursement) {
+    public void setReimbursement(double reimbursement) {
         this.reimbursement = reimbursement;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }

@@ -3,5 +3,3 @@
 /workspace.xml
 *.properties
 *.xml
-target/classes/connection.properties
-src/main/resources/connection.properties

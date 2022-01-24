@@ -7,17 +7,25 @@ public class User {
     private String username;
     private String password;
     private double balance;
+    private String role;
 
     public User() {
     }
 
-    public User(int id, String firstName, String lastName, String username, String password) {
+    public User(int id, String firstName, String lastName, String username, String password, String role) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.password = password;
         this.balance = 1000;
+        this.role = role;
+    }
+
+    public User(int id, String username, String password, Role role) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
     }
 
     public int getId() {

@@ -10,16 +10,40 @@ import dev.benjamin.models.User;
 import dev.benjamin.util.ConnectionUtil;
 
 
-public class UserDAO implements GenericDAO<User>{
+public class UserDAO {
 
-    ConnectionUtil cu = ConnectionUtil.getConnectionUtil();
+    static ConnectionUtil cu = ConnectionUtil.getConnectionUtil();
 
-    @Override
+
     public User add(User user) {
         return null;
     }
 
-    @Override
+    public static User getByUsername(String username) {
+        String sql = "select * from users where username = 'username'";
+
+        try (Connection conn = cu.getConnection()) {
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+
+            User u = null;
+            while (rs.next()) {
+                u = new User();
+                rs.getInt("user_id");
+                rs.getString("username");
+                rs.getString("first_name");
+                rs.getString("last_name");
+                rs.getString("role");
+            }
+            return u;
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public User getById(Integer id) {
         String sql = "select * from users where id = ?";
         try (Connection conn = cu.getConnection()) {
@@ -34,7 +58,8 @@ public class UserDAO implements GenericDAO<User>{
                         rs.getString("first_name"),
                         rs.getString("last_name"),
                         rs.getString("username"),
-                        rs.getString("password")
+                        rs.getString("password"),
+                        rs.getString("role")
                 );
 
                 return u;
@@ -46,7 +71,6 @@ public class UserDAO implements GenericDAO<User>{
         return null;
     }
 
-    @Override
     public List<User> getAll() {
         List<User> users = new ArrayList<>();
         String sql = "select * from users";
@@ -61,7 +85,8 @@ public class UserDAO implements GenericDAO<User>{
                         rs.getString("first_name"),
                         rs.getString("last_name"),
                         rs.getString("username"),
-                        rs.getString("password")
+                        rs.getString("password"),
+                        rs.getString("role")
                 );
                 users.add(u);
             }
@@ -73,7 +98,6 @@ public class UserDAO implements GenericDAO<User>{
         return null;
     }
 
-    @Override
     public void update(User user) {
         String sql = "update users set first_name = ?, last_name = ?, username = ?, password = ?, balance = ? where id = ?";
         try (Connection conn = cu.getConnection()) {
@@ -92,7 +116,6 @@ public class UserDAO implements GenericDAO<User>{
         }
     }
 
-    @Override
     public void delete(Integer id) {
         String sql = "delete from users where id = ?";
         try(Connection conn = cu.getConnection()) {
@@ -103,5 +126,6 @@ public class UserDAO implements GenericDAO<User>{
             e.printStackTrace();
         }
     }
+
 
 }

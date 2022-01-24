@@ -14,7 +14,7 @@ public class ConsoleInteractions {
     }
 
     static void home(){
-        print("Welcome to the payUP reimbursement system.");
+        print("Welcome to the PayUP reimbursement system.");
         print("\nLog in to continue, or quit to exit.");
         print("1. Log In \n2. Quit");
     }
@@ -40,12 +40,13 @@ public class ConsoleInteractions {
     }
 
     static void userDashboard() {
-        print("Your remaining disbursement: ");
+        print("Your remaining disbursement: "/*+ user.balance*/);
         print("1. New Request \n2. Request History \3. Quit");
     }
 
     static void managerDashboard() {
-        print("1. Your Org \n2. Pending Requests \n3. Modeling");
+        print("Your remaining disbursement: " /*+ user.balance*/);
+        print("1. New Request \n2. Pending Requests \n3. Modeling");
 
     }
 
