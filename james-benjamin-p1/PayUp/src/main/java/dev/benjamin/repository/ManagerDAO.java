@@ -6,21 +6,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import dev.benjamin.models.Manager;
 import dev.benjamin.models.User;
 import dev.benjamin.util.ConnectionUtil;
 
-
-public class UserDAO implements GenericDAO<User>{
-
+public class ManagerDAO implements GenericDAO<Manager>{
     ConnectionUtil cu = ConnectionUtil.getConnectionUtil();
 
     @Override
-    public User add(User user) {
+    public Manager add(Manager manager) {
         return null;
     }
 
     @Override
-    public User getById(Integer id) {
+    public Manager getById(Integer id) {
         String sql = "select * from users where id = ?";
         try (Connection conn = cu.getConnection()) {
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -29,15 +28,14 @@ public class UserDAO implements GenericDAO<User>{
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                User u = new User(
+                Manager m = new Manager(
                         rs.getInt("id"),
                         rs.getString("first_name"),
                         rs.getString("last_name"),
                         rs.getString("username"),
                         rs.getString("password")
                 );
-
-                return u;
+                return m;
             }
 
         } catch (SQLException e) {
@@ -47,8 +45,8 @@ public class UserDAO implements GenericDAO<User>{
     }
 
     @Override
-    public List<User> getAll() {
-        List<User> users = new ArrayList<>();
+    public List<Manager> getAll() {
+        List<Manager> managers = new ArrayList<>();
         String sql = "select * from users";
         try (Connection conn = cu.getConnection()) {
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -56,16 +54,16 @@ public class UserDAO implements GenericDAO<User>{
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                User u = new User(
+                Manager m = new Manager(
                         rs.getInt("id"),
                         rs.getString("first_name"),
                         rs.getString("last_name"),
                         rs.getString("username"),
                         rs.getString("password")
                 );
-                users.add(u);
+                managers.add(m);
             }
-            return users;
+            return managers;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -74,16 +72,16 @@ public class UserDAO implements GenericDAO<User>{
     }
 
     @Override
-    public void update(User user) {
-        String sql = "update users set first_name = ?, last_name = ?, username = ?, password = ?, balance = ? where id = ?";
+    public void update(Manager manager) {
+        String sql = "update managers set first_name = ?, last_name = ?, username = ?, password = ? where id = ?";
         try (Connection conn = cu.getConnection()) {
 
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, user.getFirstName());
-            ps.setString(2, user.getLastName());
-            ps.setString(3, user.getUsername());
-            ps.setString(4, user.getPassword());
-            ps.setInt(5, user.getId());
+            ps.setString(1, manager.getFirstName());
+            ps.setString(2, manager.getLastName());
+            ps.setString(3, manager.getUsername());
+            ps.setString(4, manager.getPassword());
+            ps.setInt(5, manager.getId());
 
             ps.executeUpdate();
 
@@ -94,7 +92,7 @@ public class UserDAO implements GenericDAO<User>{
 
     @Override
     public void delete(Integer id) {
-        String sql = "delete from users where id = ?";
+        String sql = "delete from managers where id = ?";
         try(Connection conn = cu.getConnection()) {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
@@ -103,5 +101,4 @@ public class UserDAO implements GenericDAO<User>{
             e.printStackTrace();
         }
     }
-
 }
