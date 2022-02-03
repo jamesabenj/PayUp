@@ -1,10 +1,13 @@
 package dev.benjamin.service;
 
+import dev.benjamin.exceptions.NoSuchUserException;
+import dev.benjamin.exceptions.WrongPasswordException;
 import dev.benjamin.models.User;
+import dev.benjamin.repository.UserDAO;
 
-import java.util.Optional;
 
 public class AuthService {
+    UserDAO ud = new UserDAO();
     /**
      * <ul>
      *     <li>Needs to check for existing users with username/email provided.</li>
@@ -15,7 +18,17 @@ public class AuthService {
      * </ul>
      */
     public User login(String username, String password) {
-        return null;
+        User u = ud.getByUsername(username);
+
+        if(u != null) {
+            if(u.getPassword().equals(password)) {
+                return u;
+            } else {
+                throw new WrongPasswordException("Credentials do not match.");
+            }
+        } else {
+            throw new NoSuchUserException("The user you're trying to modify does not exist.");
+        }
     }
 
     /**
@@ -40,7 +53,5 @@ public class AuthService {
      * It leverages the Optional type which is a useful interface to handle the
      * possibility of a user being unavailable.
      */
-    public Optional<User> exampleRetrieveCurrentUser() {
-        return Optional.empty();
-    }
+
 }

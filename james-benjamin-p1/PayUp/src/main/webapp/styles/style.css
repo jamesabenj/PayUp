@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');
+
+
+html, body{
+            height: 100%;
+            font-family: 'Mulish', sans-serif;
+}
+
+#heading{
+
+            color: CadetBlue;
+}
+
+#sub-heading{
+            color: LightGrey;
+}
+
+#dashboard-heading{
+
+}
+
+#sub-heading{
+            color: DimGray;
+}
+
+
+#green{
+            color: DarkSeaGreen;
+}
+
+#login-card{
+            background-color: #edf3f7;
+}
+
+#login-button{
+            color: white;
+            background-color: CadetBlue;
+}
+
+#copyright-tag{
+            font-size: 12px;
+            color: CadetBlue;
+            background-color: #a7c8d1;
+            padding: 10px;
+}
+
+
+#main-container{
+            height: 100vh;
+}
+
+#main{
+            margin: 0;
+            padding: 15px;
+            display: inline-block;
+            background-color: #edf3f7;
+
+}
+
+#sign-out {
+        color: red;
+}
+
+a:link {
+  color: DimGray;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+    color: DimGray;
+}
+
+#side-bar{
+            padding: 10px;
+            margin-left: 0;
+            background-color: #a7c8d1;
+
+}
+
+#rev-logo-side-bar{
+
+            padding-left: 5px;
+            padding-right: 5px;
+            height: 75px;
+            width: 200px;
+            align: center;
+}
+
+#rev-logo-home{
+            height: 75px;
+            width: 200px;
+            align: center;
+            padding-left: 13px;
+}
+
+#name-bar{
+            padding: 10px;
+            float:right;
+            background-color: #edf3f7;
+}
+
+
+
+#v-pills-tab{
+            padding: 0px;
+}
+
+
+.nav flex-column nav-pills{
+            margin-right: 0;
+            padding: 0px;
+            color: DimGray;
+}
+
+.nav-link{
+            margin-right: 0px;
+}
+
+#event-cost:before{
+            content: "$";
+}
+
+#footer{
+            background-color: #edf3f7;
+}
+
+.card-header{
+            background-color: LightGrey;
+}
+
+.bi bi-cash-stack{
+            color: green;
+}
+
+
+#customFile::before {
+
+  position: absolute;
+  z-index: 2;
+  display: block;
+  background-color: #eee;
+  width: 90px;
+}
+
+#submit-button{
+            color: white;
+            background-color: #0d6efd;
+}
+
+
+
+

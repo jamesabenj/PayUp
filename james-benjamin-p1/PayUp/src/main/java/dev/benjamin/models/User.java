@@ -1,5 +1,7 @@
 package dev.benjamin.models;
 
+import dev.benjamin.exceptions.NegativeBalanceException;
+
 public class User {
     private Integer id;
     private String firstName;
@@ -12,7 +14,7 @@ public class User {
     public User() {
     }
 
-    public User(int id, String firstName, String lastName, String username, String password, String role) {
+    public User(int id, String firstName, String lastName, String username, String password, double balance, String role) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -22,7 +24,7 @@ public class User {
         this.role = role;
     }
 
-    public User(int id, String username, String password, Role role) {
+    public User(int id, String username, String password) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -64,8 +66,18 @@ public class User {
         return balance;
     }
 
-    public void setBalance(int disbursement) {
-        this.balance = this.balance - disbursement;
+
+
+    public void setBalance(double disbursement) {
+        if (this.balance - disbursement > 0) {
+            this.balance = this.balance - disbursement;
+        } else {
+            throw new NegativeBalanceException("this transaction results in a negative balance.");
+        }
+    }
+
+    public void resetBalance(){
+        this.balance = 1000;
     }
 }
 

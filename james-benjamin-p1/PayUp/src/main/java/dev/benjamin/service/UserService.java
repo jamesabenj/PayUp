@@ -2,21 +2,19 @@ package dev.benjamin.service;
 
 import dev.benjamin.repository.UserDAO;
 import dev.benjamin.models.User;
-import java.util.Optional;
+
 
 public class UserService {
     private UserDAO userDAO = new UserDAO();
 
-    public boolean login(String username, String password){
+    public User login(String username, String password){
+        User u = userDAO.getByUsername(username);
 
-        User u = UserDAO.getByUsername(username);
-
-        if (u != null){
-            if (username.equals(u.getUsername())&& password.equals(u.getPassword()));
-            return true;
+        if (u != null && u.getPassword().equals(password)) {
+            return u;
+        } else {
+            return null;
         }
-        System.out.println("Credentials do not match");
-        return false;
     }
 
 
@@ -24,7 +22,5 @@ public class UserService {
     /**
      *     Should retrieve a User with the corresponding username or an empty optional if there is no match.
      */
-    public Optional<User> getByUsername(String username) {
-        return Optional.empty();
-    }
+
 }

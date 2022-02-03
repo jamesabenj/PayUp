@@ -1,6 +1,5 @@
 package dev.benjamin.models;
 
-import java.time.LocalDateTime;
 
 public class Request {
     private int id;
@@ -8,7 +7,7 @@ public class Request {
     private String description;
     private String eventType;
     private String gradeFormat;
-    private String eventLocation;
+    private String provider;
     private String eventDate;
     private Status status;
     private double reimbursement;
@@ -25,7 +24,7 @@ public class Request {
         this.description = description;
         this.eventType = eventType;
         this.gradeFormat = gradeFormat;
-        this.eventLocation = eventLocation;
+        this.provider = eventLocation;
         this.eventDate = eventDate;
         this.status = status;
         this.reimbursement = reimbursement;
@@ -36,6 +35,10 @@ public class Request {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public double getCost() {
@@ -70,12 +73,12 @@ public class Request {
         this.gradeFormat = gradeFormat;
     }
 
-    public String getEventLocation() {
-        return eventLocation;
+    public String getProvider() {
+        return provider;
     }
 
-    public void setEventLocation(String eventLocation) {
-        this.eventLocation = eventLocation;
+    public void setProvider(String provider) {
+        this.provider = provider;
     }
 
     public String getEventDate() {
@@ -100,5 +103,21 @@ public class Request {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
+    }
+
+    public User getResolver() {
+        return resolver;
+    }
+
+    public void setResolver(User resolver) {
+        this.resolver = resolver;
     }
 }

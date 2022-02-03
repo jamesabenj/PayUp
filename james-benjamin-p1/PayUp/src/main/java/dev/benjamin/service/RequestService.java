@@ -3,11 +3,36 @@ package dev.benjamin.service;
 import dev.benjamin.models.Request;
 import dev.benjamin.models.Status;
 import dev.benjamin.models.User;
+import dev.benjamin.repository.RequestDAO;
 
 import java.util.Collections;
 import java.util.List;
 
 public class RequestService {
+    RequestDAO requestDAO = new RequestDAO();
+
+    public Request newRequest(Request req, User user /*Double cost, String description, String eventType, String gradeFormat, String eventLocation, String eventDate, User user*/) {
+        /*Request request = new Request();
+        request.setCost(cost);
+        request.setDescription(description);
+        request.setEventType(eventType);
+        request.setGradeFormat(gradeFormat);
+        request.setProvider(eventLocation);
+        request.setEventDate(eventDate);
+        request.setStatus(Status.PENDING);*/
+        requestDAO.create(req, user);
+        return req;
+    }
+
+    public List<Request> getAllRequests() {
+        return requestDAO.getAll();
+    }
+
+    public List<Request> getAllByUser(User user) {
+        return requestDAO.getAllByUser(user);
+    }
+
+
 
     /**
      * <ul>

@@ -4,19 +4,21 @@ public enum Status {
     APPROVED{
         @Override
         public String toString(){
-            return "Approved";
+            return "APPROVED";
         }
     },
+
     PENDING{
         @Override
         public String toString(){
-            return "Pending";
+            return "PENDING";
         }
     },
+
     DENIED{
         @Override
         public String toString(){
-            return "Denied";
+            return "DENIED";
         }
 
     }
