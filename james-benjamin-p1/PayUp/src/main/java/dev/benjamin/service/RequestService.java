@@ -48,14 +48,24 @@ public class RequestService {
      * The Resolver should be null. Additional fields may be null.
      * After processing, the Request will have its status changed to either APPROVED or DENIED.
      */
-    public Request process(Request unprocessedRequest, Status finalStatus, User resolver) {
-        return null;
+    public Request process(Request unprocessedRequest, User resolver) {
+
+        return requestDAO.process(unprocessedRequest, resolver);
     }
 
     /**
      * Should retrieve all Requests with the correct status.
      */
     public List<Request> getRequestsByStatus(Status status) {
-        return Collections.emptyList();
+        return requestDAO.getByStatus(status);
     }
+
+    public Request getById(int id) {
+        return requestDAO.getById(id);
+    }
+
+
+
+
+
 }

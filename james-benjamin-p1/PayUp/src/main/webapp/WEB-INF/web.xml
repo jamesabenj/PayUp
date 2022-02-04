@@ -20,6 +20,11 @@
         <servlet-class>dev.benjamin.servlets.UserServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>AdminRequest</servlet-name>
+        <servlet-class>dev.benjamin.servlets.AdminRequest</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>Request</servlet-name>
         <url-pattern>/requests</url-pattern>
@@ -32,10 +37,13 @@
 
     <servlet-mapping>
         <servlet-name>User</servlet-name>
-        <url-pattern>/users</url-pattern>
+        <url-pattern>/users/*</url-pattern>
     </servlet-mapping>
 
-
+    <servlet-mapping>
+        <servlet-name>AdminRequest</servlet-name>
+        <url-pattern>/admin/*</url-pattern>
+    </servlet-mapping>
 
 
 

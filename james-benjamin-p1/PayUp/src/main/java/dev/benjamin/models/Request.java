@@ -120,4 +120,22 @@ public class Request {
     public void setResolver(User resolver) {
         this.resolver = resolver;
     }
+
+    public Double calculateReimbursement(Double cost, String eventType){
+        switch (eventType) {
+            case "University Course":
+                return this.getCost() * .80;
+            case "Seminar":
+                return this.getCost() * .60;
+            case "Certification Prep Course":
+                return this.getCost() * .75;
+            case "Certification Test":
+                return this.getCost();
+            case "Technical Training":
+                return this.getCost() * .90;
+            case "Other":
+                return this.getCost() * .30;
+        }
+        return null;
+    }
 }

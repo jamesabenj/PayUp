@@ -66,14 +66,16 @@ public class User {
         return balance;
     }
 
+    public String getRole() {
+        return role;
+    }
 
+    public void setRole(String role) {
+        this.role = role;
+    }
 
-    public void setBalance(double disbursement) {
-        if (this.balance - disbursement > 0) {
-            this.balance = this.balance - disbursement;
-        } else {
-            throw new NegativeBalanceException("this transaction results in a negative balance.");
-        }
+    public void setBalance(Double balance) {
+        this.balance = balance;
     }
 
     public void resetBalance(){

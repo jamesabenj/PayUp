@@ -86,7 +86,7 @@ public class RequestDAO {
         List<Request> requests = new ArrayList<>();
 
         try(Connection conn = cu.getConnection()) {
-            String sql = "select * from requests inner join users on (requests.author_id = ?)";
+            String sql = "select * from requests where author_id = ?";
 
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, user.getId());
@@ -122,8 +122,75 @@ public class RequestDAO {
      * Should retrieve a List of Requests from the DB with the corresponding Status or an empty List if there are no matches.
      */
     public List<Request> getByStatus(Status status) {
-        return Collections.emptyList();
+        List<Request> requests = new ArrayList<>();
+
+        try(Connection conn = cu.getConnection()) {
+            String sql = "select * from requests where status = ?";
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, status.toString());
+
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()) {
+                Request req = new Request();
+                req.setId(rs.getInt("id"));
+                req.setCost(rs.getDouble("cost"));
+                req.setDescription(rs.getString("description"));
+                req.setEventType(rs.getString("event_type"));
+                req.setGradeFormat(rs.getString("grade_format"));
+                req.setProvider(rs.getString("provider"));
+                req.setEventDate(String.valueOf(rs.getDate("event_date")));
+                req.setReimbursement(rs.getDouble("reimbursement"));
+                req.setAuthor(ud.getById(rs.getInt("author_id")));
+                req.setResolver(ud.getById(rs.getInt("resolver_id")));
+                req.setStatus(Status.valueOf(rs.getString("status").toUpperCase()));
+
+                requests.add(req);
+            }
+
+            return requests;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
+
+    public Request getById(int id) {
+        Request req = new Request();
+
+        try(Connection conn = cu.getConnection()) {
+            String sql = "select * from requests where id = ?";
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()) {
+                req.setId(rs.getInt("id"));
+                req.setCost(rs.getDouble("cost"));
+                req.setDescription(rs.getString("description"));
+                req.setEventType(rs.getString("event_type"));
+                req.setGradeFormat(rs.getString("grade_format"));
+                req.setProvider(rs.getString("provider"));
+                req.setEventDate(String.valueOf(rs.getDate("event_date")));
+                req.setReimbursement(rs.getDouble("reimbursement"));
+                req.setAuthor(ud.getById(rs.getInt("author_id")));
+                req.setResolver(ud.getById(rs.getInt("resolver_id")));
+                req.setStatus(Status.valueOf(rs.getString("status").toUpperCase()));
+            }
+
+            return req;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
 
     /**
      * <ul>
@@ -132,7 +199,32 @@ public class RequestDAO {
      *     <li>Should return a Request object with updated information.</li>
      * </ul>
      */
-    public Request update(Request unprocessedRequest) {
+    public Request process(Request request, User resolver) {
+
+        System.out.println(request.getCost());
+
+        try(Connection conn = cu.getConnection()) {
+            String sql = "update table requests set reimbursement = ?, status = ?, resolver_id = ? where id = ?";
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setDouble(1, request.calculateReimbursement(request.getCost(), request.getEventType()));
+            ps.setString(2, request.getStatus().toString());
+            ps.setInt(3, resolver.getId());
+            ps.setInt(4, request.getId());
+
+                ps.executeUpdate();
+                /*if (request.getStatus().equals("APPROVED")) {
+                    String moreSql = "update table users set balance = ? where id = ?";
+
+                    ps = conn.prepareStatement(moreSql);
+                    ps.setDouble();
+                }*/
+
+                return request;
+
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
         return null;
     }
 }

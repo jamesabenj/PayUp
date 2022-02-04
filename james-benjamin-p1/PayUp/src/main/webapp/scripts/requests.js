@@ -1,4 +1,5 @@
 url = "http://localhost:8080/payUp/requests"
+userUrl="http://localhost:8080/payUp/users/"
 
 function $(x) {
     return document.getElementById(x);
@@ -10,25 +11,26 @@ async function fetchAllRequests() {
         return resp.json()
     })
     .then(data => {
-        console.log(data)
         displayRequests(data)
     })
 }
+
+let usr = {}
 
 function displayRequests(requests) {
     let target = $('request-list')
     for(let i = 0; i < requests.length; i++) {
         let card = document.createElement('div')
-        card.setAttribute("class", "accordion shadow-sm")
-        card.setAttribute("id", `${requests[i].id}`)
-        card.innerHTML = `<div class="accordion-item"></div>` + 
-                            `<h2 class="accordion-header">` + `<button class='accordion-button' type='button' data-bs-toggle='collapse' data-bs-target='${requests[i].id}'>$${requests[i].cost} - ${requests[i].description} - <div style="color: orange;">${requests[i].status}</div></button></h2>`
-                            /*"<h2 class='accordion-header' id='heading`${req.id}`'>" + 
-                            "<button class='accordion-button' type='button' data-bs-toggle='collapse' data-bs-target='#collapse-`${req.id}`'>`${req.description}</button></h2>`" +
-                            "<div id='collapse-`${req.id}`' class='accordion-collapse collapse' data-bs-parent='#`${req.id}`'>" +
-                                "<div class='accordion-body'> `${req.cost}` </div> " +
-                            "</div>" +
-                          "</div>"; */
+        card.setAttribute("id", `${requests[i].id}-id`)
+        card.innerHTML = `<div class="card border-secondary mb-3">
+        <div class="card-header">$${requests[i].cost} - ${requests[i].description} - ${requests[i].status}</div>
+        <div class="card-body text-secondary">
+          <a href="#" onclick="" style="color: #0d6efd;">Edit </a> | <a href="#" style="color: #cc382b;"> Cancel</a>
+        </div>`;
+                
+                                
+                                              
+                        
         
         target.append(card)                 
 
@@ -36,26 +38,19 @@ function displayRequests(requests) {
 
 }
 
-/* async function addAuthor() {
-
-    let author = {
-        firstName: document.getElementById('#').value,
-        lastName: document.getElementById('#').value
-    }
-
-    let res = await fetch(url, {
-        method: postMessage,
-        body: JSON.stringify(author),
-        header: { 'Content-Type': 'application/json'}
+function fetchUser() {
+    let resp = fetch(userUrl)
+    .then(resp => {
+        return resp.json()
     })
-
-    let resJSON = await res.json()
-        .then((resp) => {
-            console.log(resp)
-        })
-        .catch((error) => {
-            console.log(error)
-        });
-
-
-} */
+    .then(data => {
+        usr.balance = data.balance
+        usr.firstName = data.firstName
+        usr.lastName = data.lastName
+    })
+    .then(function() {
+        let name = $('user-name')
+        name.innerHTML = `${usr.firstName.charAt(0)}` + `${usr.lastName.charAt(0)}`
+    })
+}    
+fetchUser()

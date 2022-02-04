@@ -22,12 +22,9 @@ public class LoginServlet extends HttpServlet {
 
         if (session == null) {
             resp.sendRedirect("index.html");
-            System.out.println("inside if");
         } else{
             session.invalidate();
-            System.out.println("inside else");
             resp.sendRedirect("index.html");
-            resp.getWriter().write(om.writeValueAsString(u));
         }
     }
 
@@ -39,9 +36,18 @@ public class LoginServlet extends HttpServlet {
         User u = userService.login(username, password);
 
         if (u != null) {
-            HttpSession session = req.getSession();
-            session.setAttribute("currentUser", u);
-            resp.sendRedirect("dashboard.html");
+            switch(u.getRole()) {
+                case "Employee":
+                    HttpSession empSession = req.getSession();
+                    empSession.setAttribute("currentUser", u);
+                    resp.sendRedirect("dashboard.html");
+                    break;
+                case "Finance Manager":
+                    HttpSession manSession = req.getSession();
+                    manSession.setAttribute("currentUser", u);
+                    resp.sendRedirect("admin-dashboard.html");
+                    break;
+            }
         } else {
             resp.setStatus(401);
         }

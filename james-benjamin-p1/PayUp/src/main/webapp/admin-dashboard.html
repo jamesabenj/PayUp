@@ -21,11 +21,12 @@
             <br>
             <br>
             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical" align="end">
-                <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="dashboard.html" role="tab" aria-controls="v-pills-home" aria-selected="true">Dashboard</a>
-                <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="request-form.html" role="tab" aria-controls="v-pills-profile" aria-selected="false">New Request</a>
-                <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="requests.html" role="tab" aria-controls="v-pills-messages" aria-selected="false">My Requests</a>
-                <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+                <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="admin-dashboard.html" role="tab" aria-controls="v-pills-home" aria-selected="true">Dashboard</a>
+                <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="admin-requests.html" role="tab" aria-controls="v-pills-messages" aria-selected="false">Pending Requests</a>
+                <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#" role="tab" aria-controls="v-pills-settings" aria-selected="false">Analytics</a>
             </div>
+            <br>
+            <br>
             <br>
             <br>
             <br>
@@ -42,8 +43,8 @@
             <br>
             <br>
             <br>
-            <label style="padding-left:21px; padding-bottom: 8px;"><i class="bi bi-card-text" style="padding-right:3px;"></i>Pending Requests</label>
-            <div class="accordion shadow-sm" id="accordionExample" style="margin-left:20px;">
+            <label style="padding-left:21px; padding-bottom: 8px;"><i class="bi bi-card-text" style="padding-right:3px;"></i>Urgent Requests</label>
+           <!--  <div class="accordion shadow-sm" id="accordionExample" style="margin-left:20px;">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingOne">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
@@ -56,19 +57,19 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
         </div>
         <div class="col-2" id="name-bar" align="right">
             <div class="btn-group">
-                <button type="button" class="btn btn-secondary dropdown-toggle"  id="user-name" data-bs-toggle="dropdown" style="width: 70px;">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" style="width: 90px;">
+                    <span style="padding-left: 0px; padding-right: 10px;"><i class="bi bi-person-fill"></i></span><span id="user-name"></span>
                 </button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" href="dashboard.html">Dashboard</a>
+                    <a class="dropdown-item" href="#">Profile</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Sign Out</a>
+                    <a class="dropdown-item" href="index.html" id="sign-out">Sign Out</a>
                 </div>
             </div>
         </div>
@@ -94,5 +95,6 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="scripts/admin-dashboard.js"></script>
 </body>
 </html>

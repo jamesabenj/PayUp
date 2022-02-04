@@ -1,4 +1,5 @@
 requestUrl = 'http://localhost:8080/payUp/requests'
+userUrl="http://localhost:8080/payUp/users"
 
 function $(x) {
     return document.getElementById(x);
@@ -10,46 +11,17 @@ name.innerHTML = 'J' + 'B'
 
 
 
-/*function addRequest() {
-    let eventCost = $('cost').value;
-    let type = $('event-type').value;
-    let format = $('grade-format').value;
-    let desc = $('description').value;
-    let prov = $('provider').value;
-    let date = $('event-date').value;
-
-    let newRequest = {
-        cost: eventCost,
-        description: desc,
-        eventType: type,
-        gradeFormat: format,
-        provider: prov,
-        eventDate: date
-    }
-
-    let json = JSON.stringify(newRequest)
-    console.log(json)
-    let xhr = new XMLHttpRequest();
-
-    xhr.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            let r = this.responseText;
-            console.log(newRequest);
-
-        }
-    };
-
-    xhr.open('POST', requestUrl);
-
-    xhr.setRequestHeader('Content-Type', 'application/json')
-
-    xhr.send(json); //xhr.send(JSON.stringify(newAuthor))
-
-}*/
-
 async function addRequest() {
-
-    let request = {
+    if ($('cost').value == 0.00) {
+        alert("All fields must be filled out")
+    } else if ($('description').value == ""){
+        alert("All fields must be filled out")
+    } else if ($('provider').value == "") {
+        alert("All fields must be filled out")
+    } else if (($('event-date')).value == "") {
+        alert("All fields must be filled out")
+    }else {
+       let request = {
         cost: $('cost').value,
         description: $('description').value,
         eventType: $('event-type').value,
@@ -67,7 +39,9 @@ async function addRequest() {
         .then(displaySuccessWindow())
         .catch(function () {
             console.log('Error')
-        }) 
+        })  
+    }
+    
 }
 
 function displaySuccessWindow(){
@@ -77,6 +51,25 @@ function displaySuccessWindow(){
                         
     target.parentNode.replaceChild(newContent, target)
 }
+
+function fetchUser() {
+    let resp = fetch(userUrl)
+    .then(resp => {
+        return resp.json()
+    })
+    .then(data => {
+        usr = {}
+
+        usr.balance = data.balance
+        usr.firstName = data.firstName
+        usr.lastName = data.lastName
+    })
+    .then(function() {
+        let name = $('user-name')
+        name.innerHTML = `${usr.firstName.charAt(0)}` + `${usr.lastName.charAt(0)}`
+    })
+}    
+fetchUser()
 
 
 

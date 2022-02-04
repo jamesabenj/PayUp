@@ -1,4 +1,4 @@
-url="http://localhost:8080/payUp/users"
+url="http://localhost:8080/payUp/users/"
 requestsUrl="http://localhost:8080/payUp/requests"
 
 function $(x) {
@@ -42,7 +42,7 @@ function fetchRequests() {
         }
     })
     .then(function() {
-        for (let req of requests) {
+        /* for (let req of requests) {
             console.log(req)
             let target = $('pending-requests')
             if(req.status == 'PENDING') {
@@ -55,7 +55,7 @@ function fetchRequests() {
                 let child = $('requests-placeholder')
                 target.replaceChild(card, child)
             }
-        }
+        } */
         
     })
 } 
