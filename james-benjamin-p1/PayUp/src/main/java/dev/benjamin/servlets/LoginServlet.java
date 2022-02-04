@@ -18,11 +18,16 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(false);
+        User u = (User) session.getAttribute("currentUser");
+
         if (session == null) {
             resp.sendRedirect("index.html");
+            System.out.println("inside if");
         } else{
-            User user = (User) session.getAttribute("currentUser");
-            resp.getWriter().write(om.writeValueAsString(user));
+            session.invalidate();
+            System.out.println("inside else");
+            resp.sendRedirect("index.html");
+            resp.getWriter().write(om.writeValueAsString(u));
         }
     }
 

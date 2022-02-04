@@ -22,7 +22,7 @@ function displayRequests(requests) {
         card.setAttribute("class", "accordion shadow-sm")
         card.setAttribute("id", `${requests[i].id}`)
         card.innerHTML = `<div class="accordion-item"></div>` + 
-                            `<h2 class="accordion-header">` + `<button class='accordion-button' type='button' data-bs-toggle='collapse' data-bs-target='${requests[i].id}'>$${requests[i].cost} - ${requests[i].description} <span styl="align:end;">${requests[i].status}</span></button></h2>`
+                            `<h2 class="accordion-header">` + `<button class='accordion-button' type='button' data-bs-toggle='collapse' data-bs-target='${requests[i].id}'>$${requests[i].cost} - ${requests[i].description} - <div style="color: orange;">${requests[i].status}</div></button></h2>`
                             /*"<h2 class='accordion-header' id='heading`${req.id}`'>" + 
                             "<button class='accordion-button' type='button' data-bs-toggle='collapse' data-bs-target='#collapse-`${req.id}`'>`${req.description}</button></h2>`" +
                             "<div id='collapse-`${req.id}`' class='accordion-collapse collapse' data-bs-parent='#`${req.id}`'>" +

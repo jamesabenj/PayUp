@@ -28,7 +28,6 @@ public class RequestServlet extends HttpServlet {
         } else{
             User user = (User) session.getAttribute("currentUser");
             List<Request> requests = rs.getAllByUser(user);
-            System.out.println(requests);
             resp.getWriter().write(objectMapper.writeValueAsString(requests));
         }
 

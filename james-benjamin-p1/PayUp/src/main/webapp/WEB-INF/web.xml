@@ -15,6 +15,11 @@
         <servlet-class>dev.benjamin.servlets.RequestServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>User</servlet-name>
+        <servlet-class>dev.benjamin.servlets.UserServlet</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>Request</servlet-name>
         <url-pattern>/requests</url-pattern>
@@ -22,7 +27,12 @@
 
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
-        <url-pattern>/dashboard</url-pattern>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>User</servlet-name>
+        <url-pattern>/users</url-pattern>
     </servlet-mapping>
 
 
