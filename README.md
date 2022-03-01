@@ -22,7 +22,7 @@ Be sure to have the Java 8 runtime environment installed.
 
 If both of the pre-requisites above are met, go ahead and clone this repo by using the below command:
 
-    git clone https://github.com/jamesabenj/payUp.git
+    git clone https://github.com/jamesabenj/PayUp.git
     
-Once cloned, you will be able to view the application at http://localhost:8080/PayUp/ - You also need to configure Tomcat to listen to port 8080
+Once cloned, you will be able to view the application at http://localhost:8080/payUp/ - You also need to configure Tomcat to listen to port 8080
 
