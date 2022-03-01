@@ -3,7 +3,7 @@ This Employee Reimbursement System (ERS) is a full-stack web application that he
 
 # Technologies Used
   * Java 8
-  * Apache Tomcat 10
+  * Apache Tomcat 9.0.58
   * Java Servlet API
   * Bootstrap 5
   * PostgreSQL 42.3.1
@@ -17,7 +17,7 @@ This Employee Reimbursement System (ERS) is a full-stack web application that he
 
 In order to see this project in action, you will need a few things:
 
-Be sure to have Apache Tomcat 10 installed.
+Be sure to have Apache Tomcat 9 installed.
 Be sure to have the Java 8 runtime environment installed.
 
 If both of the pre-requisites above are met, go ahead and clone this repo by using the below command:
